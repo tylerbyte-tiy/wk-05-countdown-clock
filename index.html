@@ -46,7 +46,38 @@
 
       function countdown() {
         var now = new Date();
-        var eventDate = new Date(2017, 11, 25);
+        var datePrompt = new function (){
+          this.dateInput = document.getElementById('dateInput');
+
+          this.show = function (msg, callback) {
+            var date = document.getElementById(dateCont);
+            date.style.top = '30%';
+            date.style.opacity = 1;
+            var dateMessage = date.querySelector('#dateMessage');
+            dateMessage.textContent = msg;
+            dateInput.focus();
+            dateInput.value = '';
+            this.callback = callback;
+            document.getElementById('freezeLayer').style.display = '';
+          };
+          this.okay = function () {
+            this.callback(dateInput.value);
+            this.close();
+          }
+          this.cancel = function () {
+            this.callback(null);
+            this.close();
+          }
+          this.close = function () {
+            var date = document.getElementById('dateCont');
+            date.style.top = '-30%';
+            date.style.opacity = 0;
+            document.getElementById('freezeLayer').style.display = 'none';
+          }
+        }
+          }
+        }
+        var eventDate = new Date(year, month, day);
 
         var currentTime = now.getTime();
         var eventTime = eventDate.getTime();
