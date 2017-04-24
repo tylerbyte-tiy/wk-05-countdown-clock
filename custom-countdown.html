@@ -117,11 +117,25 @@
 
       let submitButton =  document.getElementById("submitButton")
       submitButton.addEventListener("click", function (){
+        let now = new Date()
         let inputDay = document.getElementById("inputDay").value;
         let inputMonth = document.getElementById("inputMonth").value;
         let inputYear = document.getElementById("inputYear").value;
         console.log(inputDay, inputMonth, inputYear);
+
+        var customDate = new Date(inputDay, inputMonth, inputYear);
+
+        var currentTime = now.getTime();
+        var eventTime = customDate.getTime();
+
+        var remTime = eventTime - currentTime;
+        console.log(remTime);
+
+
+
+
       })
+
 
     </script>
   </body>
