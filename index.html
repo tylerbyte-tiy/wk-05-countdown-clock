@@ -47,41 +47,19 @@
       <input id="inputDay" placeholder="day" type="text" name="" value="">
       <button id="submitButton" type="submit" name="button">Submit</button>
     </table>
+
+
     <script type="text/javascript">
+    let submitButton =  document.getElementById("submitButton")
+    submitButton.addEventListener("click", function (){
+      countdown ();
+
+      });
+
+
+
       function countdown() {
-        var now = new Date();
-        var datePrompt = new function (){
-          this.dateInput = document.getElementById('dateInput');
-          this.show = function (msg, callback) {
-            var date = document.getElementById(dateCont);
-            date.style.top = '30%';
-            date.style.opacity = 1;
-            var dateMessage = date.querySelector('#dateMessage');
-            dateMessage.textContent = msg;
-            dateInput.focus();
-            dateInput.value = '';
-            this.callback = callback;
-            document.getElementById('freezeLayer').style.display = '';
-          };
-          this.okay = function () {
-            this.callback(dateInput.value);
-            this.close();
-          }
-          this.cancel = function () {
-            this.callback(null);
-            this.close();
-          }
-          this.close = function () {
-            var date = document.getElementById('dateCont');
-            date.style.top = '-30%';
-            date.style.opacity = 0;
-            document.getElementById('freezeLayer').style.display = 'none';
-          }
-        }
-      }
-      countdown();
-      let submitButton =  document.getElementById("submitButton")
-      submitButton.addEventListener("click", function (){
+
         let now = new Date()
         let inputYear = document.getElementById("inputYear").value;
         let inputMonth = +document.getElementById("inputMonth").value - 1;
@@ -89,10 +67,7 @@
         console.log(inputYear, inputMonth, inputDay);
         var customDate = new Date(inputYear, inputMonth, inputDay);
         console.log(customDate);
-        countdown(eventDate);
-      });
-        function countdown(customDate) {
-          let now = new Date()
+
           var currentTime = now.getTime();
           var eventTime = customDate.getTime();
           var remTime = eventTime - currentTime;
@@ -104,17 +79,15 @@
           h %= 24;
           m %= 60;
           s %= 60;
-          h = (h < 10) ? "0" + h : h;
-          m = (m < 10) ? "0" + m : m;
-          s = (s < 10) ? "0" + s : s;
 
         console.log(d, h, m, s);
         document.getElementById("days").textContent = d;
         document.getElementById("hours").textContent = h;
         document.getElementById("minutes").textContent = m;
         document.getElementById("seconds").textContent = s;
-        setTimeout(countdown, 1000, eventDate);
-      }
+        setTimeout(countdown, 1000);
+
+    }
 
 
     </script>
